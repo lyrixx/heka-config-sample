@@ -1,0 +1,5 @@
+#[router]
+#type = "TcpInput"
+#address = "127.0.0.1:5569"
+#decoder = "ProtobufDecoder"
+#keep_alive = true

@@ -1,0 +1,15 @@
+[symfony_log]
+type = "UdpInput"
+address = ":5565"
+decoder = "monolog_decoder"
+
+[monolog_decoder]
+type = "SandboxDecoder"
+script_type = "lua"
+filename = "lua_decoders/monolog.lua"
+
+    [monolog_decoder.config]
+    type = "application.log"
+    facet = "frontend"
+    server = "frontend-1"
+    hostname = "insight.sensiolabs.com"

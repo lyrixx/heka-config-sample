@@ -1,0 +1,6 @@
+## Forward all non hekad log to a router
+#[aggregator_output]
+#type = "TcpOutput"
+#address = "127.0.0.1:5569"
+#keep_alive = true
+#message_matcher = "Logger != 'hekad'"

@@ -1,0 +1,10 @@
+[debug_log_output]
+type = "LogOutput"
+message_matcher = "Logger != 'hekad'"
+# FIXME useful ?
+address = ":5566"
+encoder = "debug_log_encoder"
+
+[debug_log_encoder]
+type = "SandboxEncoder"
+filename = "lua_encoders/debug.lua"

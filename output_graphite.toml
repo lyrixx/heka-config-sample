@@ -1,0 +1,5 @@
+[graphite]
+type = "CarbonOutput"
+message_matcher = "Type == 'heka.statmetric'"
+address = "graphite.lxc:2003"
+protocol = "tcp"

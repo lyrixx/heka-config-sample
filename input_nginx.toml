@@ -1,0 +1,16 @@
+[nginx_access]
+type = "LogstreamerInput"
+decoder = "nginx_access_decoder"
+log_directory = "/var/log/nginx"
+file_match = '(?P<DomainName>.+)\.access\.log$'
+differentiator = ["nginx.access.", "DomainName"]
+hostname = "my.hostname.localhost"
+
+[nginx_access_decoder]
+type = "SandboxDecoder"
+script_type = "lua"
+filename = "lua_decoders/nginx_access.lua"
+
+    [nginx_access_decoder.config]
+    log_format = '$remote_addr - $remote_user [$time_local] "$request" $status $body_bytes_sent "$http_referer" "$http_user_agent"'
+    type = "nginx.access"

@@ -1,0 +1,17 @@
+[accumulator_heka]
+type = "StatAccumInput"
+ticker_interval = 1
+legacy_namespaces = false
+counter_prefix = ''
+statsd_prefix = 'hekad'
+
+[stats_filter_heka]
+type = "StatFilter"
+stat_accum_name = "accumulator_heka"
+message_matcher = 'Type =~ /^heka/'
+
+    [stats_filter_heka.Metric.heka]
+    type = "Counter"
+    name = "heka.h:%Hostname%.t:%Type%.l:%Logger%"
+    value = "1"
+    replace_dot = true

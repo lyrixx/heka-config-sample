@@ -1,0 +1,12 @@
+[elasticsearch]
+type = "ElasticSearchOutput"
+message_matcher = "Logger != 'hekad'"
+encoder = "elasticsearch_encoder"
+server = "http://es.lxc:9200"
+flush_interval = 50
+
+[elasticsearch_encoder]
+type = "ESLogstashV0Encoder"
+type_name = "%{Type}--%{Hostname}"
+fields = ["Timestamp", "Type", "Logger", "Severity", "Payload", "Hostname", "Fields"]
+raw_bytes_fields = ["Context", "Extra"]

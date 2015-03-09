@@ -1,0 +1,30 @@
+[accumulator_symfony]
+type = "StatAccumInput"
+ticker_interval = 1
+legacy_namespaces = false
+counter_prefix = ''
+statsd_prefix = 'hekad'
+
+[stats_filter_symfony]
+type = "StatFilter"
+stat_accum_name = "accumulator_symfony"
+message_matcher = 'Type == "application.log"'
+
+    [stats_filter_symfony.Metric.total]
+    type = "Counter"
+    name = "application.%Hostname%.heka.total"
+    value = "1"
+    replace_dot = false
+
+    [stats_filter_symfony.Metric.logger]
+    type = "Counter"
+    name = "application.%Hostname%.heka.logger.%Logger%"
+    value = "1"
+    replace_dot = false
+
+    [stats_filter_symfony.Metric.SeverityText]
+    type = "Counter"
+    name = "application.%Hostname%.heka.severity.%SeverityText%"
+    value = "1"
+    replace_dot = false
+
